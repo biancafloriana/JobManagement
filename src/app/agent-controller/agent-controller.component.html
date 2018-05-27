@@ -1,0 +1,172 @@
+<div class="col-sm-12"><app-add-job (msgEvent)="addJob($event)"></app-add-job></div>
+
+<div *ngFor="let crib of jobs" #elem [id]="crib.id" class="col-sm-4">
+  <div class="thumbnail">
+      
+    <div class="caption" >
+      <div *ngIf="!crib.showDetails">
+        <h4>
+          <span class="label label-primary">
+            {{ crib.type }}
+          </span>
+        </h4>
+        <h4>
+            <span class="label label-primary">
+              {{ crib.company }}
+            </span>
+          </h4>
+        <h3>
+          <i class="glyphicon glyphicon"></i> 
+            {{ crib.name }}
+        </h3>
+        <h4>
+          <i class="glyphicon glyphicon"></i> 
+            {{ crib.company }}
+        </h4>
+        <h4>
+            <span class="label label-primary">
+              Domain: {{ crib.domain }}
+            </span>
+            <span class="label label-primary">
+              Experience: {{ crib.experience }}
+            </span>
+          </h4>
+          
+  
+        <hr>
+        <button 
+        class="btn btn-sm btn-danger"
+        *ngIf="!crib.showDetails"
+        (click)="delete(crib.name)">
+        Delete
+      </button>
+      <button 
+      class="btn btn-sm btn-success"
+      *ngIf="!crib.showDetails"
+      (click)="crib.showDetails = !crib.showDetails">
+      Edit
+    </button>
+      </div>
+  
+      <div *ngIf="crib.showDetails">
+      <div class="panel-body" >
+          <form #newForm="ngForm" (ngSubmit)="edit(newForm.value)" >
+            <div class="form-group col-sm-4">
+                <input type="hidden" name="_id" ngModel={{crib.id}}>
+              <label for="name" class="">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                
+                name="name"
+                ngModel = "{{crib.name}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="type" class="">Type</label>
+              <input
+                type="text"
+                class="form-control"
+               
+                name="type"
+                ngModel="{{crib.type}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="domain" class="">Domain</label>
+              <input
+                type="text"
+                class="form-control"
+                name="domain"
+                ngModel="{{crib.domain}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="experience" class="">Experience</label>
+              <input
+                type="text"
+                class="form-control"
+
+                name="experience"
+                ngModel= "{{crib.experience}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="company" class="">Company</label>
+              <input
+                type="text"
+                class="form-control"
+             
+                name="company"
+                ngModel= "{{crib.company}}"
+                required>
+            </div>
+            <div class="form-group col-sm-12">
+              <button
+                class="btn btn-primary listing-button"
+                type="submit"
+                ng-show="addListing">
+                  Add
+              </button>
+              
+              
+            </div>
+          </form>
+          
+          <button 
+              class="btn btn-sm btn-danger"
+              *ngIf="crib.showDetails"
+              (click)="crib.showDetails = !crib.showDetails">
+              Close
+            </button>
+        </div>  
+    </div>
+  </div>
+  
+  </div>
+  </div>
+ 
+
+  <div class="col-sm-12"><app-user-search  (msgEvent)="searchUser($event)"></app-user-search></div>
+  
+  <div *ngFor="let crib of filteredUser" #elem [id]="crib.id" class="col-sm-4">
+    <div class="thumbnail">
+        
+      <div class="caption">
+        <div *ngIf="!crib.showDetails">
+          <h4>
+            <span class="label label-primary">
+              {{ crib.name }}
+            </span>
+          </h4>
+          <span class="label label-info">
+            {{ crib.interests }}
+          </span>
+          <hr>
+          <button 
+            class="btn btn-sm btn-success"
+            *ngIf="!crib.showDetails"
+            (click)="crib.showDetails = !crib.showDetails">
+            Contact
+          </button>
+        </div>
+  
+        <div *ngIf="crib.showDetails">
+          <div class="details">
+            <h4>
+              <span class="	glyphicon glyphicon-user">
+                Email: {{crib.contact}}
+              </span>
+            </h4>
+            <hr>  
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="crib.showDetails = !crib.showDetails">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    </div>

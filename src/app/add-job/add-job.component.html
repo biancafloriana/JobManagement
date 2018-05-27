@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Add a Job</h4>
+  </div>
+  <div class="panel-body">
+    <form #newForm="ngForm" (ngSubmit)="onSubmit(newForm.value)">
+      <div class="form-group col-sm-4">
+        <label for="name" class="">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          name="name"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="type" class="">Type</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Type"
+          name="type"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="domain" class="">Domain</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Domain"
+          name="domain"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="experience" class="">Experience</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Experience"
+          name="experience"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="company" class="">Company</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Company"
+          name="company"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-12">
+        <button
+          class="btn btn-primary listing-button"
+          type="submit"
+          ng-show="addListing">
+            Add
+        </button>
+      </div>
+    </form>
+    <label  class="">{{message$}}</label>
+  </div>  
+</div>

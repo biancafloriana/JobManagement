@@ -1,0 +1,105 @@
+<app-search-controller (msgEvent)="searchJob($event)"></app-search-controller>
+<div *ngFor="let crib of filterdJobs" #elem [id]="crib.id" class="col-sm-4">
+  <div class="thumbnail">
+      
+    <div class="caption">
+      <div *ngIf="!crib.showDetails">
+        <h4>
+          <span class="label label-primary">
+            {{ crib.type }}
+          </span>
+        </h4>
+        <h3>
+          <i class="glyphicon glyphicon"></i> 
+            {{ crib.name }}
+        </h3>
+        <h4>
+          <i class="glyphicon glyphicon-bullhorn  "></i> 
+            {{ crib.company }}
+        </h4>
+  
+        <hr>
+  
+        <button 
+          class="btn btn-sm btn-success"
+          *ngIf="!crib.showDetails"
+          (click)="crib.showDetails = !crib.showDetails">
+          Details
+        </button>
+        <button 
+            class="btn btn-sm btn-info"
+            (click)="applyToJob(elem.id)">
+            Apply
+          </button>
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="intrestedIn(elem.id)">
+            Interested
+          </button>
+      </div>
+  
+      <div *ngIf="crib.showDetails">
+        <div class="details">
+          <h4>
+            <span class="label label-primary">
+              Domain: {{ crib.domain }}
+            </span>
+            <hr>
+            <span class="	glyphicon glyphicon-education">
+              Experience: {{ crib.experience }}
+            </span>
+          </h4>
+          <hr>
+  
+          <button
+            class="btn btn-sm btn-success"
+            (click)="crib.showDetails = !crib.showDetails">
+            Close
+          </button>
+          <button
+          class="btn btn-sm btn-info"
+          (click)="crib.showDetails = !crib.showDetails">
+          Apply
+        </button>
+        <button
+          class="btn btn-sm btn-danger"
+          (click)="crib.showDetails = !crib.showDetails">
+          Interested
+        </button> 
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!--<div class ="col-sm-12">
+  <button
+  class="btn btn-sm btn-info"
+  (click)="updateInterested()">
+  Show interested
+</button> 
+<br>
+<button
+class="btn btn-sm btn-danger"
+(click)="show$=false">
+  Close
+</button>
+</div>
+<div *ngIf="show$">
+<div *ngFor="let crib of interestedJ" #elem [id]="crib.id" class="col-sm-4">
+  <div class="thumbnail">
+      
+    <div class="caption">
+      <div >
+        <h4>
+          <span class="label label-primary">
+            {{ crib.name }}
+          </span>
+        </h4>
+        <button
+          class="btn btn-sm btn-danger"
+          (click)="uninterested(elem.id)">
+          Uninterested
+        </button>
+      </div>
+       </div></div></div></div> -->

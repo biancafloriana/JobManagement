@@ -1,0 +1,16 @@
+<div>
+<div *ngIf="type$">   
+<app-login (msgEvent)="setType($event)"></app-login>
+</div> 
+<div *ngIf="basic$">   
+       <app-basic-user-controller [user]="user"></app-basic-user-controller>
+</div> 
+<div *ngIf="admin$">   
+    <app-admin [user]="user"></app-admin>
+</div>   
+
+<div *ngIf="agent$">   
+        <app-agent-controller [user]="user" ></app-agent-controller>
+ </div> 
+
+</div>

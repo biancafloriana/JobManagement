@@ -1,0 +1,276 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Basic</h4>
+  </div>
+  <div class="panel-body">
+    <form #newForm="ngForm" (ngSubmit)="onSubmit(newForm.value)">
+      <div class="form-group col-sm-4">
+        <label for="name" class="">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          name="name"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="username" class="">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          name="username"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="password" class="">Password</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Password"
+          name="password"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="interests" class="">Interests</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Interests"
+          name="interests"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="contact" class="">Contact</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Contact"
+          name="contact"
+          ngModel
+          required>
+      </div>
+      <div class="form-group col-sm-12">
+        <button
+          class="btn btn-primary listing-button"
+          type="submit"
+          ng-show="addListing">
+            Add
+        </button>
+      </div>
+    </form>
+
+  </div>  
+</div>
+<div *ngFor="let crib of users" #elem [id]="crib.id" class="col-sm-4">
+  <div class="thumbnail">
+      
+    <div class="caption">
+      <div *ngIf="!crib.showDetails">
+        <h4>
+          <span class="label label-primary">
+            {{ crib.name }}
+          </span>
+        </h4>
+        <span class="label label-primary">
+          {{ crib.interests }}
+        </span>
+         <span class="label label-primary">
+              Email: {{crib.contact}}
+            </span>
+        <hr>
+        <button 
+          class="btn btn-sm btn-success"
+          *ngIf="!crib.showDetails"
+          (click)="crib.showDetails = !crib.showDetails">
+          Edit
+        </button>
+        <button 
+        class="btn btn-sm btn-danger"
+        *ngIf="!crib.showDetails"
+        (click)="delete(crib.username)">
+        Delete
+      </button>
+      </div>
+
+      <div *ngIf="crib.showDetails">
+        <div class="details">
+          <form #newForm="ngForm"  (ngSubmit)="edit(newForm.value)">
+            <div class="form-group col-sm-4">
+              <input type="hidden" name="_id" ngModel={{crib.id}}>
+              <label for="name" class="">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                ngModel="{{crib.name}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="username" class="">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                ngModel="{{crib.username}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="password" class="">Password</label>
+              <input
+                type="text"
+                class="form-control"
+                name="password"
+                ngModel="{{crib.password}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="interests" class="">Interests</label>
+              <input
+                type="text"
+                class="form-control"
+                name="interests"
+                ngModel="{{crib.interests}}"
+                required>
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="contact" class="">Contact</label>
+              <input
+                type="text"
+                class="form-control"
+                name="contact"
+                ngModel ="{{crib.contact}}"
+                required>
+            </div>
+            <div class="form-group col-sm-12">
+              <button
+                class="btn btn-primary listing-button"
+                type="submit"
+                ng-show="addListing">
+                  Add
+              </button>
+            </div>
+          </form>
+      
+     
+          <button
+            class="btn btn-sm btn-danger"
+            (click)="crib.showDetails = !crib.showDetails">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+    
+  <div class="panel panel-default col-sm-12">
+      <div class="panel-heading col-sm-12">
+        <h4>Agent</h4>
+      </div>
+      <div class="panel-body">
+        <form #agentForm="ngForm" (ngSubmit)="onSubmitAgent(agentForm.value)">
+          <div class="form-group col-sm-4">
+            <label for="username" class="">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              name="username"
+              ngModel
+              required>
+          </div>
+          <div class="form-group col-sm-4">
+            <label for="password" class="">Password</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Password"
+              name="password"
+              ngModel
+              required>
+          </div>
+          <div class="form-group col-sm-12">
+            <button
+              class="btn btn-primary listing-button"
+              type="submit"
+              ng-show="addListing">
+                Add
+            </button>
+          </div>
+        </form>
+      </div>  
+    </div>
+    <div *ngFor="let crib of agents" #elem [id]="crib.id" class="col-sm-4">
+      <div class="thumbnail">
+          
+        <div class="caption">
+          <div *ngIf="!crib.showDetails">
+            <h4>
+              <span class="label label-primary">
+                {{ crib.username }}
+              </span>
+            </h4>
+            <button 
+              class="btn btn-sm btn-success"
+              *ngIf="!crib.showDetails"
+              (click)="crib.showDetails = !crib.showDetails">
+              Edit
+            </button>
+            <button 
+            class="btn btn-sm btn-danger"
+            *ngIf="!crib.showDetails"
+            (click)="deleteAgent(crib.username)">
+            Delete
+          </button>
+          </div>
+    
+          <div *ngIf="crib.showDetails">
+            <div class="details">
+              <form #thisForm="ngForm"  (ngSubmit)="editAgent(thisForm.value)">
+                <div class="form-group col-sm-4">
+                  <input type="hidden" name="_id" ngModel={{crib.id}}>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="username" class="">Username</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    ngModel="{{crib.username}}"
+                    required>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="password" class="">Password</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="password"
+                    ngModel="{{crib.password}}"
+                    required>
+                </div>
+                <div class="form-group col-sm-12">
+                  <button
+                    class="btn btn-primary listing-button"
+                    type="submit"
+                    ng-show="addListing">
+                      Add
+                  </button>
+                </div>
+              </form>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="crib.showDetails = !crib.showDetails">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
